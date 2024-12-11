@@ -12,12 +12,15 @@ from model.database import db
 class Config:
     SQLALCHEMY_DATABASE_URI = os.environ['URI']
     SECRET_KEY = os.environ['SECRET_KEY']
+    SQL_TRACK_MODIFICATIONS = False
 
 
 def init_app(app):
     app.config.from_object(Config)
     migrate = Migrate()
     csrf  = CSRFProtect()
+
+    migrate.init_app(app, db)
     db.init_app(app)
     migrate.init_app(app)
     csrf.init_app(app)
