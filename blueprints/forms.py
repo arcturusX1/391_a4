@@ -24,4 +24,5 @@ from wtforms.validators import (
 class UserForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired()])
     last_name = StringField('Last Name', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
