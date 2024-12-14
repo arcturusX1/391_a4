@@ -1,6 +1,6 @@
 async function getUsers() {
     try {
-        const response = await fetch('api/users');
+        const response = await fetch('/api/users');
 
         // Check if the response is OK (status in the range 200-299)
         if (!response.ok) {

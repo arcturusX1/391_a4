@@ -3,4 +3,4 @@ from config import api
 from api.fetch_users import UserResource
 
 def register_apis():
-    api.add_resource(UserResource, 'users')
+    api.add_resource(UserResource, '/api/users')
