@@ -92,9 +92,9 @@ def validate_car_license(form, field):
     except ValueError:
         raise ValidationError('Last two blocks must be valid numbers')
 class UserForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired(message="Enter First Name")])
-    last_name = StringField('Last Name', validators=[DataRequired(message="Enter Last Name")])
-    address = StringField('Address', validators=[DataRequired(message="Enter Address")])
+    first_name = StringField('First Name', validators=[DataRequired(message="Enter First Name"), Length(min=3, max=40)])
+    last_name = StringField('Last Name', validators=[DataRequired(message="Enter Last Name"), Length(min=3, max=40)])
+    address = StringField('Address', validators=[DataRequired(message="Enter Address"), Length(min=20, max=200)])
     phone = StringField('Phone', validators=[DataRequired(message="Enter Phone Number"), Length(min=11, max=11)])
     car_license = StringField('License number', validators=[DataRequired(message="Enter License Number"), validate_car_license])
     car_engine = StringField('Engine number', validators=[DataRequired(message="Enter Engine Number")] )

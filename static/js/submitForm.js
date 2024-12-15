@@ -16,9 +16,22 @@ async function submitForm(event) {
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Error response:', errorText);
-            alert(`Error: ${errorText}`);
+            // const errorText = await response.text();
+            // console.error('Error response:', errorText);
+            // alert(`Error: ${errorText}`);
+            // return;
+            
+            const errorData = await response.json();
+            // Display field-specific errors
+            console.log(errorData)
+            if (errorData.errors) {
+                Object.entries(errorData.errors).forEach(([field, messages]) => {
+                    const errorSpan = document.getElementById(`${field}_error`);
+                    if (errorSpan) {
+                        errorSpan.textContent = messages.join(', ');
+                    }
+                });
+            }
             return;
         }
 
