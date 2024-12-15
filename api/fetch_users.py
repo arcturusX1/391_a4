@@ -36,18 +36,29 @@ class UserResource(Resource):
         form = UserForm(data=request.get_json())
 
         if not form.validate():
-            return {'error': 'Validation error', 'errors': form.errors}
+            return {'error': 'Validation error', 'errors': form.errors}, 400
         
         first_name = form.first_name.data
         last_name = form.last_name.data
+        address = form.address.data
+        phone = form.phone.data
+        car_license = form.car_license.data
+        car_engine = form.car_engine.data
 
         #add data to db
         try:
-            db.session.add(User(first_name=first_name, last_name=last_name))
+            user = User(first_name=first_name,
+                        last_name=last_name,
+                        address=address,
+                        phone=phone,
+                        car_license=car_license,
+                        car_engine=car_engine
+                        )
+            db.session.add(user)
             db.session.commit()
             print(f'added {first_name}{last_name}')
         except Exception as e:
             db.session.rollback()
             print(f"error: {e}")
 
-        return {'message': 'success', 'data': {'first-name': first_name, 'last-name': last_name}}
+        return {'message': 'success', 'data': {'first-name': first_name, 'last-name': last_name}}, 201

@@ -68,14 +68,16 @@ valid_license = {"district":["DHAKA",
 def validate_car_license(form, field):
     try:
         district, class_code, block_1, block_2 = field.data.split("-")
+        district = district.upper()
+        class_code = class_code.upper()
     except ValueError:
         raise ValidationError('License number must be in format: DISTRICT-CLASS-XX-XXXX')
     
     # Validate district and class separately for more specific error messages
-    if district not in valid_license.district:
+    if district not in valid_license["district"]:
         raise ValidationError(f'Invalid district code.')
     
-    if class_code not in valid_license.classes:
+    if class_code not in valid_license["class_code"]:
         raise ValidationError(f'Invalid class code.')
     
     # Validate numeric blocks
