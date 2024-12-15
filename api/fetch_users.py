@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 from flask import jsonify, request, flash
 from flask_wtf.csrf import validate_csrf
+from blueprints.forms import UserForm
 
 from model.database import User, db
 
@@ -24,13 +25,21 @@ class UserResource(Resource):
         except Exception as e:
             return {'error': 'Invalid CSRF' }, 400
         
-        parser = reqparse.RequestParser()
-        parser.add_argument('first_name', type=str, required=True)
-        parser.add_argument('last_name', type=str, required=True)
-        args = parser.parse_args()
+        # parser = reqparse.RequestParser()
+        # parser.add_argument('first_name', type=str, required=True)
+        # parser.add_argument('last_name', type=str, required=True)
+        # args = parser.parse_args()
 
-        first_name = args['first_name']
-        last_name = args['last_name']
+        # first_name = args['first_name']
+        # last_name = args['last_name']
+
+        form = UserForm(data=request.get_json())
+
+        if not form.validate():
+            return {'error': 'Validation error', 'errors': form.errors}
+        
+        first_name = form.first_name.data
+        last_name = form.last_name.data
 
         #add data to db
         try:

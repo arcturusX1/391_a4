@@ -11,6 +11,7 @@ class User(db.Model):
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     address = db.Column(db.String(120), nullable=False)
+    phone = db.Column(db.String(11), nullable=False)
     car_license = db.Column(db.String(20), nullable=False)
     car_engine = db.Column(db.String(20), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)  # Default to current time

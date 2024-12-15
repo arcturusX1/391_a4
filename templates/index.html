@@ -15,11 +15,46 @@
         <div>
             {{ form.first_name.label }}
             {{ form.first_name(size=32, class="form-control") }}
+            {%for error in form.first_name.errors%}
+                <span>{{ error }}</span>
+            {%endfor%}
         </div>
         <div>
             {{ form.last_name.label }}
             {{ form.last_name(size=32, class="form-control") }}
+            {%for error in form.last_name.errors%}
+                <span>{{ error }}</span>
+            {%endfor %}
         </div>
+        <div>
+            {{ form.phone.label }}
+            {{ form.phone(size=32, class="form-control")}}
+            {%for error in form.phone.errors%}
+                <span>{{ error }}</span>
+            {%endfor%}
+        </div>
+        <div>
+            {{ form.address.label }}
+            {{ form.address(size=32, class="form-control")}}
+            {%for error in form.address.errors%}
+                <span>{{ error }}</span>
+            {%endfor%}
+        </div>
+        <div>
+            {{ form.car_license.label }}
+            {{ form.car_license(size=32, class="form-control")}}
+            {%for error in form.car_license.errors%}
+                <span>{{ error }}</span>
+            {%endfor%}
+        </div>
+        <div>
+            {{ form.car_engine.label }}
+            {{ form.car_engine(size=32, class="form-control")}}
+            {%for error in form.car_engine.error%}
+                <span>{{ error }}</span>
+            {%endfor%}
+        </div>
+        
         <div>
             {{ form.submit(class="btn btn-primary") }}
         </div>
