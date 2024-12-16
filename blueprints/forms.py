@@ -98,6 +98,7 @@ class UserForm(FlaskForm):
     phone = StringField('Phone', validators=[DataRequired(message="Enter Phone Number"), Length(min=11, max=11)])
     car_license = StringField('License number', validators=[DataRequired(message="Enter License Number"), validate_car_license])
     car_engine = StringField('Engine number', validators=[DataRequired(message="Enter Engine Number")] )
+    date = DateField('Appointment Date', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
         

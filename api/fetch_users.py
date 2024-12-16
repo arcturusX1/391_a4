@@ -26,15 +26,7 @@ class UserResource(Resource):
             validate_csrf(csrf)
         except Exception as e:
             return {'error': 'Invalid CSRF' }, 400
-
-        # parser = reqparse.RequestParser()
-        # parser.add_argument('first_name', type=str, required=True)
-        # parser.add_argument('last_name', type=str, required=True)
-        # args = parser.parse_args()
-
-        # first_name = args['first_name']
-        # last_name = args['last_name']
-
+        
         form = UserForm(data=request.get_json())
 
         if not form.validate():

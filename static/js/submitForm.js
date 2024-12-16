@@ -10,17 +10,13 @@ async function submitForm(event) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': form.querySelector('input[name="csrf_token"]').value, //manually define POST method, and add content type and csrf token to header
+                'X-CSRFToken': form.querySelector('input[name="csrf_token"]').value,
+                //manually define POST method, and add content type and csrf token to header
             },
             body: JSON.stringify(jsonData),
         });
 
-        if (!response.ok) {
-            // const errorText = await response.text();
-            // console.error('Error response:', errorText);
-            // alert(`Error: ${errorText}`);
-            // return;
-            
+        if (!response.ok) {       
             const errorData = await response.json();
             // Display field-specific errors
             console.log(errorData)

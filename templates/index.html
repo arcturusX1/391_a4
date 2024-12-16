@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="{{url_for('static', filename='js/users.js')}}"></script>
     <script src="{{ url_for('static', filename='js/submitForm.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{{ url_for('static', filename='js/date.js')}}"></script>
+
+
 </head>
 <body>
     <h1>Ass</h1>
@@ -39,10 +44,13 @@
         </div>
         <div>
             {{ form.car_engine.label }}
-            {{ form.car_engine(size=32, class="form-control")}}
+            {{ form.car_engine(size=32, class="form-control" )}}
             <span id="car_engine_error" class="error"></span>
         </div>
-        
+        <div>
+            {{ form.date.label }}
+            {{ form.date(size=100, class="form-control", id="date-picker")}}
+        </div>
         <div>
             {{ form.submit(class="btn btn-primary") }}
         </div>
