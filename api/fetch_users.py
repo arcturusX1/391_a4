@@ -12,7 +12,9 @@ class UserResource(Resource):
             return{'id': user.id, 'first_name':user.first_name, 'last_name': user.last_name}
         
         users = User.query.all()
-        return [{'id': user.id, 'first_name':user.first_name, 'last_name': user.last_name} for user in users]
+        return [{'id': user.id, 
+                 'first_name':user.first_name, 
+                 'last_name': user.last_name} for user in users]
 
     def post(self):
         #manual CSRF validation

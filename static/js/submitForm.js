@@ -2,8 +2,8 @@ async function submitForm(event) {
     event.preventDefault();
 
     const form = document.getElementById('user-form');
-    const formData = new FormData(form);
-    const jsonData = Object.fromEntries(formData.entries());
+    const formData = new FormData(form); //FormData takes data from a form
+    const jsonData = Object.fromEntries(formData.entries()); //convert form data to json
 
     try {
         const response = await fetch('/api/users', {
@@ -26,7 +26,7 @@ async function submitForm(event) {
             console.log(errorData)
             if (errorData.errors) {
                 Object.entries(errorData.errors).forEach(([field, messages]) => {
-                    const errorSpan = document.getElementById(`${field}_error`);
+                    const errorSpan = document.getElementById(`${field}_error`); //target span id
                     if (errorSpan) {
                         errorSpan.textContent = messages.join(', ');
                     }
