@@ -34,7 +34,7 @@ function showMechanics(data){
             bookButton.textContent = 'Book'
             bookCell.appendChild(bookButton)
             row.appendChild(bookCell)
-            bookButton.addEventListener('click', )
+            bookButton.addEventListener('click', handleClick(id)) //redirect to user form
         }
         else {
             const bookCell = document.createElement('td')
@@ -55,6 +55,12 @@ async function getMechanics() {
     catch(error){
         throw new Error(`error: ${error}`)
     }
+}
+
+function handleClick(id){
+    const path = '/book_mechanic/'
+    const url = `${path}?param=${encodeURIComponent(id)}`
+    window.location.href = ur
 }
 
 getMechanics();

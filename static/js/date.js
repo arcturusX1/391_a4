@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", ()=>{
     async function check_dates() {
         try{
-            fetch
+            const response = await fetch('/api/appointment/')
+        }
+        catch(error){
+            throw new Error(`error: ${error}`)
         }
         
     }
