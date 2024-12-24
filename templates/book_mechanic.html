@@ -14,9 +14,7 @@
 
 </head>
 <body>
-    <div id="mechanic-id">
-        {{ mechanic_id }}
-    </div>
+    <div id="mechanic-id">{{ mechanic_id }}</div>
     <div id="form">
         <form id="user-form" method="POST" action="{{ url_for('home_bp.home') }}" onsubmit="submitForm(event)">
             {{ form.hidden_tag() }}
