@@ -4,11 +4,11 @@ async function submitForm(event) {
     const form = document.getElementById('user-form');
     const formData = new FormData(form); //FormData takes data from a form
     const jsonData = Object.fromEntries(formData.entries()); //convert form data to json
-    const mechanic_id = document.getElementById("mechanic-id")
+    const mechanic_id = document.getElementById('mechanic-id').textContent
     jsonData.mechanic_id = mechanic_id
 
     try {
-        const response = await fetch('/api/users', {
+        const response = await fetch('/api/appointment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

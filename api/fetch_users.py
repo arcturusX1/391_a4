@@ -16,45 +16,45 @@ class UserResource(Resource):
                  'first_name':user.first_name, 
                  'last_name': user.last_name} for user in users]
 
-    def post(self):
-        #manual CSRF validation
-        #data from js comes here. look for csrf token in headers
-        csrf = None
-        if 'X-CSRFToken' in request.headers:
-            csrf = request.headers['X-CSRFToken']
-        try:
-            validate_csrf(csrf)
-        except Exception as e:
-            return {'error': 'Invalid CSRF' }, 400
+    # def post(self):
+    #     #manual CSRF validation
+    #     #data from js comes here. look for csrf token in headers
+    #     csrf = None
+    #     if 'X-CSRFToken' in request.headers:
+    #         csrf = request.headers['X-CSRFToken']
+    #     try:
+    #         validate_csrf(csrf)
+    #     except Exception as e:
+    #         return {'error': 'Invalid CSRF' }, 400
         
-        form = UserForm(data=request.get_json())
+    #     form = UserForm(data=request.get_json())
 
-        if not form.validate():
-            return {'error': 'Validation error', 'errors': form.errors}, 400
+    #     if not form.validate():
+    #         return {'error': 'Validation error', 'errors': form.errors}, 400
         
-        first_name = form.first_name.data
-        last_name = form.last_name.data
-        address = form.address.data
-        phone = form.phone.data
-        car_license = form.car_license.data
-        car_engine = form.car_engine.data
-        date = form.date.data
+    #     first_name = form.first_name.data
+    #     last_name = form.last_name.data
+    #     address = form.address.data
+    #     phone = form.phone.data
+    #     car_license = form.car_license.data
+    #     car_engine = form.car_engine.data
+    #     date = form.date.data
 
-        #add data to db
-        try:
-            user = User(first_name=first_name,
-                        last_name=last_name,
-                        address=address,
-                        phone=phone,
-                        car_license=car_license,
-                        car_engine=car_engine,
-                        date=date
-                        )
-            db.session.add(user)
-            db.session.commit()
-            print(f'added {first_name}{last_name}')
-        except Exception as e:
-            db.session.rollback()
-            print(f"error: {e}")
+    #     #add data to db
+    #     try:
+    #         user = User(first_name=first_name,
+    #                     last_name=last_name,
+    #                     address=address,
+    #                     phone=phone,
+    #                     car_license=car_license,
+    #                     car_engine=car_engine,
+    #                     date=date
+    #                     )
+    #         db.session.add(user)
+    #         db.session.commit()
+    #         print(f'added {first_name}{last_name}')
+    #     except Exception as e:
+    #         db.session.rollback()
+    #         print(f"error: {e}")
 
-        return {'message': 'success', 'data': {'first-name': first_name, 'last-name': last_name}}, 201
+    #     return {'message': 'success', 'data': {'first-name': first_name, 'last-name': last_name}}, 201
