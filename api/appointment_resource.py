@@ -5,7 +5,7 @@ class AppointmentResource(Resource):
     def get(self, id):
         # Query appointments for the given mechanic ID
         appointments = Appointment.query.filter_by(mechanic_id=id).all()
-        
+        print(appointments)
         if not appointments:
             return {"error": "No appointments found for this mechanic"}, 404
 

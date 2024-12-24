@@ -18,6 +18,7 @@ async function fetchMechanics(){
 function showMechanics(data){
     const table = document.getElementById("mechanicTable").querySelector('tbody')
     data.forEach(item => {
+        console.log(`row for ${item.id}`)
         const row = document.createElement('tr') //row
 
         const idCell = document.createElement('td') //cell
@@ -34,7 +35,9 @@ function showMechanics(data){
             bookButton.textContent = 'Book'
             bookCell.appendChild(bookButton)
             row.appendChild(bookCell)
-            bookButton.addEventListener('click', handleClick(id)) //redirect to user form
+            const current_id = item.id
+            console.log(`EL for ${item.id}`)
+            bookButton.addEventListener('click', () => handleClick(current_id)) //redirect to user form. arrow function so that it doesn't get triggered immediately. 
         }
         else {
             const bookCell = document.createElement('td')
@@ -53,14 +56,13 @@ async function getMechanics() {
     showMechanics(mechanic_data)
     }
     catch(error){
-        throw new Error(`error: ${error}`)
+        throw Error(`error: ${error}`)
     }
 }
 
 function handleClick(id){
-    const path = '/book_mechanic/'
-    const url = `${path}?param=${encodeURIComponent(id)}`
-    window.location.href = ur
+    const path = `/book_mechanic/${id}`
+    window.location.href = path
 }
 
 getMechanics();

@@ -4,6 +4,7 @@ home_bp = Blueprint('home_bp', __name__)
 
 book_mechanic_bp = Blueprint('book_mechanic_bp', __name__)
 @book_mechanic_bp.route('/book_mechanic/<int:id>', methods=['GET', 'POST'])
-def home():
+def book_mechanic(id):
     form = UserForm()
-    return render_template('book_mechanic.html', form=form, mechanic_id = id)
+    mechanic_id = id
+    return render_template('book_mechanic.html', form=form, mechanic_id = mechanic_id)
