@@ -5,6 +5,7 @@ async function submitForm(event) {
     const formData = new FormData(form); //FormData takes data from a form
     const jsonData = Object.fromEntries(formData.entries()); //convert form data to json
     const mechanic_id = document.getElementById("mechanic-id")
+    jsonData.mechanic_id = mechanic_id
 
     try {
         const response = await fetch('/api/users', {

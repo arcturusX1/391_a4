@@ -44,8 +44,8 @@ class AppointmentResource(Resource):
         car_license = form.car_license.data
         car_engine = form.car_engine.data
         date = form.date.data
-
-        mechanic_id = 
+        
+        mechanic_id = request.args.get(mechanic_id)
 
         #add data to db
         try:
@@ -55,13 +55,23 @@ class AppointmentResource(Resource):
                         phone=phone,
                         car_license=car_license,
                         car_engine=car_engine,
-                        date=date
                         )
             db.session.add(user)
             db.session.commit()
-            user_id = User.query.get(phone=phone)
-            appt = Appointment(user_id=user_id, mechanic_id=mechanic_id)
+            
+            #try to book appointment
+            if mechanic_id != None:
+                user_id = User.query.get(phone=phone)
+                try:
+                    appt = Appointment(user_id=user_id, 
+                                    mechanic_id=mechanic_id,
+                                    date=date
+                                    )
+                except Exception as e:
+                    print(f'error: {e}')
+            
             print(f'added {first_name}{last_name}')
+        
         except Exception as e:
             db.session.rollback()
             print(f"error: {e}")
