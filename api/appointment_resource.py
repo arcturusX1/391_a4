@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from blueprints.forms import UserForm
 
 
-from model.database import User, Appointment, db
+from model.database import User, Appointment, Mechanic, db
 
 class AppointmentResource(Resource):
     def get(self, id):
@@ -85,6 +85,18 @@ class AppointmentResource(Resource):
                     )
                     db.session.add(appointment)
                     db.session.commit()
+
+                    #increment mechanic slot counter
+                    mechanic = Mechanic.query.get(mechanic_id)
+                    if mechanic:
+                        try:
+                            mechanic.appt_number += 1
+                            db.session.commit()
+                            print('appt counter incremented')
+                        except Exception as e:
+                            print(f'error {e}')
+
+
                     print(f"Appointment created for User ID {user_id} and Mechanic ID {mechanic_id}")
                 except IntegrityError:
                     db.session.rollback()
