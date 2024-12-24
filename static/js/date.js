@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const datePicker = document.getElementById("date-picker")
         const fp_instance = flatpickr(
             datePicker, {
+                dateFormat: "Y-m-d",
                 enableTime: true,
                 altInput: true,
                 altFormat: "F J, Y h:i k"

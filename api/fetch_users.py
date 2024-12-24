@@ -38,6 +38,7 @@ class UserResource(Resource):
         phone = form.phone.data
         car_license = form.car_license.data
         car_engine = form.car_engine.data
+        date = form.date.data
 
         #add data to db
         try:
@@ -46,7 +47,8 @@ class UserResource(Resource):
                         address=address,
                         phone=phone,
                         car_license=car_license,
-                        car_engine=car_engine
+                        car_engine=car_engine,
+                        date=date
                         )
             db.session.add(user)
             db.session.commit()

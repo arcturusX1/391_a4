@@ -7,4 +7,4 @@ from api.appointment_resource import AppointmentResource
 def register_apis():
     api.add_resource(UserResource, '/api/users')
     api.add_resource(MechanicResource, '/api/mechanics', '/api/mechanics/<int:id>')
-    api.add_resource(AppointmentResource, '/api/appointment/<int:id>')
+    api.add_resource(AppointmentResource, '/api/appointment/', '/api/appointment/<int:id>')
